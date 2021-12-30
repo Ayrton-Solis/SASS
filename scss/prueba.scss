@@ -1,11 +1,39 @@
-$header: aquamarine;
+@mixin animacion {
+    width: 75px;
+    height: 30px;
+    border-radius: 5px;
+    transition: all 0.25s;
+}
+@mixin hover {
+    width: 85px;
+    height: 40px;
+    border-left: 8px solid rgba(0, 174, 255, 0.158);
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+$mapa: (
+    nav: aquamarine,
+    nav-movile: chartreuse
+);
+
+$nav: map-get($mapa, nav);
+$nav-movile: map-get($mapa, nav-movile);
+
 *{
     padding: 0%;
     margin: 0%;
 }
+html{
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-family: 'Comforter Brush', cursive;
+    font-family: 'Estonia', cursive;
+    font-family: 'Mukta', sans-serif;
+    font-family: 'Poppins', sans-serif;
+    font-family: 'Readex Pro', sans-serif;
+}
 header{
     padding: 1em;
-    background-color: $header;
+    background-color: $nav;
     display: flex;
     justify-content: space-evenly;
     h1{
@@ -41,43 +69,22 @@ section{
         justify-content: space-evenly;
     }
     .input-uno{
-        width: 75px;
-        height: 30px;
-        border-radius: 5px;
-        transition: all 0.25s;
+        @include animacion;
     }
     .input-uno:hover{
-        width: 85px;
-        height: 40px;
-        border-left: 8px solid rgba(0, 174, 255, 0.158);
-        box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba
-    (0,0,0,0.22);
+        @include hover;
     }
     .input-dos{
-        width: 75px;
-        height: 30px;
-        border-radius: 5px;
-        transition: all 0.25s;
+        @include animacion;
     }
     .input-dos:hover{
-        width: 85px;
-        height: 40px;
-        border-left: 8px solid rgba(0, 174, 255, 0.158);
-        box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba
-    (0,0,0,0.22);
+        @extend .input-uno:hover;
     }
     .input-tres{
-        width: 75px;
-        height: 30px;
-        border-radius: 5px;
-        transition: all 0.25s;
+        @include animacion;
     }
     .input-tres:hover{
-        width: 85px;
-        height: 40px;
-        border-left: 8px solid rgba(0, 174, 255, 0.158);
-        box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba
-    (0,0,0,0.22);
+        @extend .input-uno:hover
     }
     .opinion{
         display: flex;
@@ -113,7 +120,94 @@ section{
 }
 }
 footer{
-    background-color: aquamarine;
+    background-color: $nav;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
 }
+*{
+    @media screen  and (max-width: 620px) {
+        header{
+            background-color: $nav-movile;
+            font-size: small;
+        }
+        section{
+            display: flex;
+            flex-direction: column;
+        }
+        section div img {
+            width: 250px;
+        }
+        section textarea{
+            width: 300px;
+            height: 20px;
+            transition: all 2s;
+        }
+        section textarea:focus{
+            width: 300px;
+            height: 100px;
+        }
+        footer{
+            background-color: $nav-movile;
+        }
+    }
+    
+    @media screen and (max-width: 400px) {
+        header {
+            background-color: $nav-movile;
+            flex-direction: column;
+        }
+        section {
+            display: flex;
+            flex-direction: column;
+        }
+        section textarea{
+            width: 250px;
+            height: 20px;
+            transition: all 2s;
+        }
+        section textarea:focus{
+            width: 250px;
+            height: 100px;
+        }
+        footer{
+            background-color: $nav-movile;
+        }
+    }
+    @media screen and (max-width: 320px) {
+        header{
+            background-color: $nav-movile;
+            font-size: x-small;
+            display: flex;
+            flex-direction: column;
+        }
+        section{
+            font-size: small;
+            display: flex;
+            flex-direction: column;
+        }
+        section div img{
+            width: 100px;
+        }
+        section .categorias .categorias-hijo{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 3px;
+        }
+        section textarea{
+            width: 200px;
+            height: 20px;
+            transition: all 2s;
+        }
+        section textarea:focus{
+            width: 200px;
+            height: 100px;
+        }
+        footer{
+            background-color: $nav-movile;
+            font-size: x-small;
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+        }
+    }}
